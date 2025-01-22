@@ -85,9 +85,9 @@ const TableComponent = () => {
       <img
         onClick={() => dispatch(toggleOpenVisual())}
         src={visual1}
-        className="w-[40%] h-[50%] border-white cursor-pointer"
+        className=" h-[50%] border-white cursor-pointer"
       />
-      <div className="flex flex-col justify-center gap-4 items-center">
+      <div className="flex flex-col justify-center items-center">
         <h1 className="text-xl text-black font-bold">
           Wear and Tear: <span className="text-blue-800">{percent}%</span>
         </h1>

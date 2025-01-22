@@ -201,7 +201,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col bg-[#460073] h-screen w-screen justify-center">
+    <div className="flex flex-col bg-[#460073] h-screen w-full justify-center">
       {/* <div>
         <div className="absolute top-0 left-0 flex flex-col w-28 pl-2 pt-2 justify-center items-start rounded-full">
           <img src={logo} className="w-full h-8" />
@@ -285,9 +285,8 @@ function App() {
           </div>
         </>
       )}
-      <div className="flex flex-col h-screen w-screen p-6 gap-3">
+      <div className="flex flex-col h-screen w-full p-6 gap-3">
         {/* First Row - KeyFobs and ScratchCard */}
-        <div className="h-2"></div>
         <div className="flex flex-row justify-center h-[55%] gap-3">
           {/* KeyFobs (takes 50% on small screens, 25% on larger screens) */}
           <div className="h-full w-[55%] justify-center">
@@ -301,7 +300,7 @@ function App() {
         </div>
 
         <div className="flex flex-row justify-center h-[45%] gap-3">
-          <div className="h-full justify-center w-[65%]">
+          <div className="h-auto justify-center w-[65%]">
             <EcuData />
           </div>
 
