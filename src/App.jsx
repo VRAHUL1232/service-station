@@ -216,10 +216,9 @@ function App() {
             <div className="absolute left-[12%] top-[12%] mt-2 bg-white rounded-lg shadow-lg p-8 border border-gray-200 w-3/4 h-3/4">
               <div className="flex flex-col gap-10 w-full h-full justify-between items-center">
                 <h3 className="text-3xl justify-center font-bold mb-2">
-                  {dentImageId == 1 && `Left Top View`}
-                  {dentImageId == 2 && `Left Bottom View`}
-                  {dentImageId == 3 && `Right Top View`}
-                  {dentImageId == 4 && `Right Bottom View`}
+                  {dentImageId == 1 && `Left View`}
+                  {dentImageId == 2 && `Top View`}
+                  {dentImageId == 3 && `Right View`}
                 </h3>
                 {dentImageId == 1 && (
                   <img src={card1} className="w-3/5 h-3/5 rounded-lg" />

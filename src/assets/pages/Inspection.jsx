@@ -19,7 +19,7 @@ export default Inspection;
 
 const TableComponent = () => {
   const product = "Disk Brake";
-  const [genuine, setGenuine] = useState(true);
+  const [genuine, setGenuine] = useState("True");
   const [percent, setPercent] = useState(90);
   const dispatch = useDispatch();
   const { firebaseConfig } = useSelector((state) => state.isOpen);
@@ -66,7 +66,7 @@ const TableComponent = () => {
         <div className="w-8" />
         <div className="" />
         <h1 className="flex flex-row items-center text-xl text-black font-bold">
-          {genuine ? (
+          {(genuine=="True") ? (
             <span className={`text-green-400`}>
               <CircleCheckBig />
             </span>
@@ -75,7 +75,7 @@ const TableComponent = () => {
               <CircleX />
             </span>
           )}
-          {genuine ? (
+          {(genuine=="True") ? (
             <span className={`text-green-400`}>Genuine</span>
           ) : (
             <span className={`text-red-700`}>Not Genuine</span>
@@ -89,7 +89,7 @@ const TableComponent = () => {
       />
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-xl text-black font-bold">
-          Wear and Tear: <span className="text-blue-800">{percent}%</span>
+          Wear and Tear: <span className="text-blue-800">{percent.toFixed(2)}%</span>
         </h1>
       </div>
     </div>

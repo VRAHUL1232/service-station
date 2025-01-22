@@ -36,7 +36,17 @@ function KeyFobs() {
   }, []);
 
   const dataSet = [
-    {},
+    {
+      name: "-",
+      model: "-",
+      number: "-- -- -- --",
+      serviceDate: "-",
+      cno: "-",
+      eno: "-",
+      services: 0,
+      year: 0,
+      odometer: 0,
+    },
     {
       name: "V RAHUL",
       model: "BMW",
@@ -170,7 +180,7 @@ function KeyFobs() {
         </div>
 
         {/* Right-aligned Section: Car Owner, Car Name, Service History Button */}
-        <div className="h-full justify-evenly flex flex-col items-end">
+        <div className="h-full w-1/3 justify-evenly flex flex-col items-end">
           {/* Car Owner */}
           <div className="flex items-center justify-end">
             <CircleUser className="w-6 h-6 text-black border-2 border-black rounded-full" />
@@ -193,7 +203,7 @@ function KeyFobs() {
 
           {/* Service History Button */}
           <div
-            className="flex justify-center w-1/2 py-1 rounded-md bg-[#7500c0] text-white text-center cursor-pointer hover:bg-[#dcafff] hover:text-black transition shadow-md"
+            className="flex flex-row justify-center w-2/3 py-1 rounded-md bg-[#7500c0] text-white text-center cursor-pointer hover:bg-[#dcafff] hover:text-black transition shadow-md"
             onClick={() => {
               dispatch(toggleOpenTable());
             }}
