@@ -203,6 +203,7 @@ function App() {
   };
 
   return (
+    <>
     <div className="flex flex-col bg-[#460073] h-screen w-full justify-center">
       {/* <div>
         <div className="absolute top-0 left-0 flex flex-col w-28 pl-2 pt-2 justify-center items-start rounded-full">
@@ -307,7 +308,9 @@ function App() {
           </div>
         </div>
       </div>
+     
     </div>
+     </>
   );
 }
 

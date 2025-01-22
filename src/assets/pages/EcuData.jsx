@@ -163,8 +163,8 @@ function EcuData() {
     ];
 
     return (
-      <div className="h-4/5 flex overflow-auto border border-gray-300 rounded-lg shadow-md ">
-        <table className="min-w-full divide-y divide-gray-200">
+      <div className="h-full w-full overflow-auto border-1 border-gray-300  rounded-lg ">
+        <table className="w-full divide-y divide-gray-200">
           <thead className="bg-[#e6deff]">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-medium text-[#460073] uppercase">
@@ -212,43 +212,81 @@ function EcuData() {
     );
   };
 
+  // return (
+  //   <div className="h-full w-full flex flex-col justify-between gap-2 p-6 bg-[#f3eded]">
+  //     {/* Header */}
+  //     <h1 className="text-3xl text-black font-bold text-center">ECU Data</h1>
+
+  //     {/* Main Content */}
+  //     <div className="w-full h-full flex flex-row justify-between bg-black">
+  //       {/* <div className=""> */}
+
+  //       <DynamicTable/>
+
+  //       <div className="w-[30%] h-full flex flex-col justify-evenly items-center">
+  //         <div className="flex flex-row w-full justify-evenly">
+  //           <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+  //             <img src={ecuFinalData1 ? ecu3 : ecu33} className="w-10 h-10" />
+  //             {/* <h1 className="text-md font-bold">Coolant</h1> */}
+  //           </div>
+  //           <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+  //             <img src={ecuFinalData2 ? ecu2 : ecu22} className="w-10 h-10" />
+  //             {/* <h1 className="text-md font-bold">Engine Load</h1> */}
+  //           </div>
+  //         </div>
+
+  //         <div className="flex flex-row w-full justify-evenly">
+  //           <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+  //             <img src={ecuFinalData3 ? ecu1 : ecu11} className="w-10 h-10" />
+  //             {/* <h1 className="text-md font-bold">Brake</h1> */}
+  //           </div>
+  //           <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+  //             <img src={ecuFinalData4 ? ecu4 : ecu44} className="w-10 h-10" />
+  //             {/* <h1 className="text-md font-bold">RPM</h1> */}
+  //           </div>
+  //         </div>
+  //         <div className="flex flex-row w-full justify-center">
+  //           <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+  //             <img src={ecuFinalData5 ? ecu5 : ecu55} className="w-10 h-10" />
+  //             {/* <h1 className="text-md font-bold">Battery</h1> */}
+  //           </div>
+  //         </div>
+  //       </div> 
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div className="h-full w-full flex flex-col justify-between gap-2 p-6 bg-[#f3eded]">
+    <div className="h-full w-full flex flex-col gap-2 p-6 bg-[#f3eded]">
       {/* Header */}
       <h1 className="text-3xl text-black font-bold text-center">ECU Data</h1>
-
+  
       {/* Main Content */}
-      <div className="w-full h-full flex flex-row justify-between">
-        {/* <div className=""> */}
-
-        <DynamicTable/>
-
-        <div className="w-[30%] h-full flex flex-col justify-evenly items-center">
+      <div className="flex-1 w-full flex flex-row justify-between  min-h-0">
+        {/* Table Container */}
+        <div className="flex-1 overflow-auto shadow-lg border  border-zinc-400 rounded-lg"> 
+          <DynamicTable/>
+        </div>
+        <div className="w-[30%] flex flex-col justify-evenly items-center p-4">
           <div className="flex flex-row w-full justify-evenly">
-            <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
               <img src={ecuFinalData1 ? ecu3 : ecu33} className="w-10 h-10" />
-              {/* <h1 className="text-md font-bold">Coolant</h1> */}
             </div>
-            <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
               <img src={ecuFinalData2 ? ecu2 : ecu22} className="w-10 h-10" />
-              {/* <h1 className="text-md font-bold">Engine Load</h1> */}
             </div>
           </div>
-
+  
           <div className="flex flex-row w-full justify-evenly">
-            <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
               <img src={ecuFinalData3 ? ecu1 : ecu11} className="w-10 h-10" />
-              {/* <h1 className="text-md font-bold">Brake</h1> */}
             </div>
-            <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
               <img src={ecuFinalData4 ? ecu4 : ecu44} className="w-10 h-10" />
-              {/* <h1 className="text-md font-bold">RPM</h1> */}
             </div>
           </div>
           <div className="flex flex-row w-full justify-center">
-            <div className="h-full flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
               <img src={ecuFinalData5 ? ecu5 : ecu55} className="w-10 h-10" />
-              {/* <h1 className="text-md font-bold">Battery</h1> */}
             </div>
           </div>
         </div>

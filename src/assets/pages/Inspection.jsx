@@ -58,14 +58,14 @@ const TableComponent = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full justify-start items-center gap-6">
+    <div className="flex flex-col h-full w-full justify-center items-center gap-6 min-h-0">
       <div className="flex flex-row justify-center">
         <h1 className="text-xl text-black font-bold">
           <span className="text-black">{product}</span>
         </h1>
         <div className="w-8" />
         <div className="" />
-        <h1 className="flex flex-row items-center text-xl text-black font-bold">
+        <h1 className="flex flex-row text-xl text-black font-bold">
           {(genuine=="True") ? (
             <span className={`text-green-400`}>
               <CircleCheckBig />
@@ -85,9 +85,9 @@ const TableComponent = () => {
       <img
         onClick={() => dispatch(toggleOpenVisual())}
         src={visual1}
-        className=" h-[50%] border-white cursor-pointer"
+        className="h-[50%] max-h-[40rem] object-scale-down border-white cursor-pointer"
       />
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex justify-center ">
         <h1 className="text-xl text-black font-bold">
           Wear and Tear: <span className="text-blue-800">{percent.toFixed(2)}%</span>
         </h1>
