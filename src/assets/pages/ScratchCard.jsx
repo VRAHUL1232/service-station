@@ -111,9 +111,9 @@ function ScratchCard() {
             dispatch(toggleOpenImage());
             dispatch(setDentImageId(id));
           }}
-          className="p-2 bg-white rounded-full hover:bg-gray-300"
+          className="p-2 bg-gray-600 rounded-full transition text-white hover:text-white shadow-md shadow-zinc-700 hover:bg-gray-400"
         >
-          <FaRegImage size={25} color="black" />
+          <FaRegImage size={25} />
         </button>
       </div>
     );
@@ -125,18 +125,21 @@ function ScratchCard() {
         Scratch & Dent Analysis
       </h1>
       <div className="w-full h-auto flex flex-row items-center justify-between">
-        <div className="flex flex-col items-center justify-center w-auto">
-          <div className="flex flex-col">
-            <h4>
-              <span className="text-[#a100ff] font-bold">{leftDent}D</span>{" "}
-              <span className="text-[#0041f0] font-bold">{leftScratch}S</span>
-            </h4>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-between items-center w-full h-auto">
+        <div className="flex flex-col justify-start items-center w-full h-full">
           <PopupButton id={1} />
-          <ArrowLineLeft />
+          <div className="flex flex-row w-full h-full">
+            <div className="flex flex-col items-center justify-center w-auto">
+              <div className="flex flex-col">
+                <h4>
+                  <span className="text-[#a100ff] font-bold">{leftDent}D</span>{" "}
+                  <span className="text-[#0041f0] font-bold">
+                    {leftScratch}S
+                  </span>
+                </h4>
+              </div>
+            </div>
+            <ArrowLineLeft />
+          </div>
         </div>
 
         <div className="flex flex-col w-2/4 h-auto">
@@ -162,20 +165,23 @@ function ScratchCard() {
           <img src={img5} className="w-full h-auto" alt="Image 5" />
         </div>
 
-        <div className="flex flex-col justify-between items-center w-full h-auto">
+        <div className="flex flex-col justify-between items-center w-full h-full">
           <PopupButton id={3} />
-          <ArrowLine />
-        </div>
-
-        <div className="flex flex-col">
-          <h4>
-            <span className="text-[#a100ff] font-bold">{rightDent}D</span>{" "}
-            <span className="text-[#0041f0] font-bold">{rightScratch}S</span>
-          </h4>
+          <div className="flex flex-row  w-full h-full">
+            <ArrowLine />
+            <div className="flex flex-col justify-center">
+              <h4>
+                <span className="text-[#a100ff] font-bold">{rightDent}D</span>{" "}
+                <span className="text-[#0041f0] font-bold">
+                  {rightScratch}S
+                </span>
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex flex-row justify-between w-full font-bold text-xl">
-        <div className="flex flex-row gap-2 justify-center">
+        <div className="flex flex-row gap-3 justify-center">
           <h4 className="text-black text-xl font-bold">Total:-</h4>
           <h4 className="text-[#a100ff] text-xl">
             <span className="text-[#460073]">

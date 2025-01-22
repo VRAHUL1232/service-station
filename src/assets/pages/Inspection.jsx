@@ -85,7 +85,7 @@ const TableComponent = () => {
       <img
         onClick={() => dispatch(toggleOpenVisual())}
         src={visual1}
-        className="h-[50%] max-h-[40rem] object-scale-down border-white cursor-pointer"
+        className="h-[50%] max-h-[40rem] object-scale-down rounded-lg cursor-pointer transition hover:opacity-60"
       />
       <div className="flex justify-center ">
         <h1 className="text-xl text-black font-bold">

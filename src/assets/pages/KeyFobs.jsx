@@ -123,12 +123,12 @@ function KeyFobs() {
         </h1>
 
         {/* Next Service Alert */}
-        <div className="rounded-md bg-[#e6dcff] shadow-md text-black flex p-2">
+        <div className="rounded-md bg-[#dcafff] shadow-md text-black flex p-2">
           <div className="flex flex-col gap-0">
             <div className="flex flex-row gap-1 items-center">
               <img src="./image.png" className="w-7 h-7" />
               <h1 className="text-md font-semibold">
-                {getDateDifference(dataSet[key]["serviceDate"])} days left!
+                {getDateDifference(dataSet[key]["serviceDate"])} Days left!
               </h1>
             </div>
             <div className="flex flex-row gap-1">
@@ -145,12 +145,12 @@ function KeyFobs() {
         <div className="h-full flex flex-col justify-evenly items-start">
           {/* Car Number Plate */}
           <div className="flex flex-row gap-3 items-center">
-            <div className="w-auto h-auto py-1 px-2 flex items-center justify-center bg-gradient-to-b from-green-300 to-green-200 text-black font-bold rounded-full">
+            <div className="w-auto h-auto py-1 px-3 flex items-center justify-center bg-gradient-to-b from-green-300 to-green-200 text-black font-bold rounded-full">
               N
             </div>
             <h1 className="text-xl font-semibold text-black">
               <span className="font-bold">Number Plate:</span>{" "}
-              <span className="border-2 border-gray-500">
+              <span className="border-2 px-2 py-0.5 border-gray-500">
                 {dataSet[key]["number"]}
               </span>
             </h1>
@@ -158,7 +158,7 @@ function KeyFobs() {
 
           {/* Chassis Number */}
           <div className="flex flex-row gap-3 items-center">
-            <div className="flex items-center py-1 px-2 justify-center bg-gradient-to-r from-purple-300 to-purple-200 text-black font-bold rounded-full">
+            <div className="flex items-center py-1 px-3 justify-center bg-gradient-to-r from-purple-300 to-purple-200 text-black font-bold rounded-full">
               C
             </div>
             <h1 className="text-xl font-semibold text-black">
@@ -169,7 +169,7 @@ function KeyFobs() {
 
           {/* Engine Number */}
           <div className="flex flex-row gap-3 items-center ">
-            <div className="flex  py-1 px-2 items-center justify-center bg-gradient-to-r from-blue-300 to-blue-200 text-black font-bold rounded-full">
+            <div className="flex  py-1 px-3 items-center justify-center bg-gradient-to-r from-blue-300 to-blue-200 text-black font-bold rounded-full">
               E
             </div>
             <h1 className="text-xl font-semibold text-black">
@@ -183,7 +183,8 @@ function KeyFobs() {
         <div className="h-full w-1/3 justify-evenly flex flex-col items-end">
           {/* Car Owner */}
           <div className="flex items-center justify-end">
-            <CircleUser className="w-6 h-6 text-black border-2 border-black rounded-full" />
+            <CircleUser className="w-7 h-7 text-black border-2 border-black rounded-full" />
+            <div className="w-2"></div>
             <h1 className="text-xl font-semibold text-black">
               <span className="font-bold">Owner:</span> {dataSet[key]["name"]}
             </h1>
@@ -194,8 +195,9 @@ function KeyFobs() {
             <img
               src={car}
               alt="Car"
-              className="w-6 h-6 bg-white border-2 border-black rounded-lg"
+              className="w-7 h-7 bg-white border-2 border-black rounded-lg"
             />
+            <div className="w-2"></div>
             <h1 className="text-xl font-semibold text-black">
               <span className="font-bold">Model:</span> {dataSet[key]["model"]}
             </h1>
@@ -203,12 +205,12 @@ function KeyFobs() {
 
           {/* Service History Button */}
           <div
-            className="flex flex-row justify-center w-2/3 py-1 rounded-md bg-[#7500c0] text-white text-center cursor-pointer hover:bg-[#dcafff] hover:text-black transition shadow-md"
+            className="flex flex-row justify-center w-2/3 py-1 rounded-md bg-[#7500c0] text-white text-center cursor-pointer hover:bg-[#dcafff] hover:text-black transition shadow-md shadow-stone-700"
             onClick={() => {
               dispatch(toggleOpenTable());
             }}
           >
-            <h1 className="text-md font-semibold">Service History</h1>
+            <h1 className="text-md font-semibold ">Service History</h1>
           </div>
         </div>
       </div>
@@ -219,7 +221,7 @@ function KeyFobs() {
           <img
             src="./machine.png"
             alt="Manufacture Year"
-            className="w-1/6 h-1/4"
+            className="w-atuto h-1/4"
           />
           <h1 className="text-lg font-bold text-gray-600">Manufacture Year</h1>
           <h1 className="text-xl font-bold text-black">
@@ -227,7 +229,7 @@ function KeyFobs() {
           </h1>
         </div>
         <div className="bg-gradient-to-b from-blue-200 via-white to-blue-50 shadow-lg rounded-lg w-full text-center flex flex-col justify-center items-center">
-          <img src="./odometer.png" alt="Total KM" className="w-1/6 h-1/4" />
+          <img src="./odometer.png" alt="Total KM" className="w-auto h-1/4" />
           <h1 className="text-lg font-bold text-gray-600">Total KM</h1>
           <h1 className="text-xl font-bold text-black">
             {dataSet[key]["odometer"]}
@@ -237,7 +239,7 @@ function KeyFobs() {
           <img
             src="./service.png"
             alt="Total Services"
-            className="w-1/6 h-1/4 "
+            className="w-auto h-1/4 "
           />
           <h1 className="text-lg font-bold text-gray-600">Total Services</h1>
           <h1 className="text-xl font-bold text-black">

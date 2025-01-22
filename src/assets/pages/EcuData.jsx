@@ -13,7 +13,7 @@ import ecu33 from "/exhaust-fan2.png";
 import ecu44 from "/combustion2.png";
 import ecu55 from "/car-battery2.png";
 function EcuData() {
-  const [key, setKey] = useState(0);
+  const [key, setKey] = useState(2);
   const [ecudata1, setEcu1] = useState(true);
   const [ecudata2, setEcu2] = useState(false);
   const [ecudata3, setEcu3] = useState(true);
@@ -114,72 +114,72 @@ function EcuData() {
     [false, true, true, false, true],
   ];
   const ecuFinalData1 =
-    key == 3 ? (ecudata1 > 50 ? true : false) : EcuDataset[key][0];
+    key == 3 ? (ecudata1 < 50 ? true : false) : EcuDataset[key][0];
   const ecuFinalData2 =
-    key == 3 ? (ecudata2 > 50 ? true : false) : EcuDataset[key][1];
+    key == 3 ? (ecudata2 < 50 ? true : false) : EcuDataset[key][1];
   const ecuFinalData3 =
-    key == 3 ? (ecudata3 > 50 ? true : false) : EcuDataset[key][2];
+    key == 3 ? (ecudata3 < 50 ? true : false) : EcuDataset[key][2];
   const ecuFinalData4 =
-    key == 3 ? (ecudata4 > 50 ? true : false) : EcuDataset[key][3];
+    key == 3 ? (ecudata4 < 50 ? true : false) : EcuDataset[key][3];
   const ecuFinalData5 =
-    key == 3 ? (ecudata5 > 50 ? true : false) : EcuDataset[key][4];
+    key == 3 ? (ecudata5 < 50 ? true : false) : EcuDataset[key][4];
   const DynamicTable = () => {
     const data = [
       {
         id: 1,
         name: "Coolant",
-        moduleNumber: "CRC-001",
-        fault: "Abnormal Temperature",
+        moduleNumber: ecuFinalData1 ? "--" : "CRC-001",
+        fault: ecuFinalData1 ? "No Fault" : "Abnormal Temperature",
         condition: ecuFinalData1 ? "Good" : "Bad",
       },
       {
         id: 2,
         name: "Engine Load",
-        moduleNumber: "CRC-701",
-        fault: "Power Failure",
+        moduleNumber: ecuFinalData2 ? "--" : "CRC-701",
+        fault: ecuFinalData2 ? "No Fault" : "Power Failure",
         condition: ecuFinalData2 ? "Good" : "Bad",
       },
       {
         id: 3,
         name: "Brake",
-        moduleNumber: "CRC-819",
-        fault: "Sensor Error",
+        moduleNumber: ecuFinalData3 ? "--" : "CRC-819",
+        fault: ecuFinalData3 ? "No Fault" : "Sensor Error",
         condition: ecuFinalData3 ? "Good" : "Bad",
       },
       {
         id: 4,
         name: "Battery",
-        moduleNumber: "ERC-405",
-        fault: "Battery Low",
+        moduleNumber: ecuFinalData4 ? "--" : "ERC-405",
+        fault: ecuFinalData4 ? "No Fault" : "Battery Low",
         condition: ecuFinalData4 ? "Good" : "Bad",
       },
       {
         id: 5,
         name: "RPM",
-        moduleNumber: "CRC-506",
-        fault: "Low Power",
+        moduleNumber: ecuFinalData5 ? "--" :"CRC-506",
+        fault: ecuFinalData5 ? "No Fault" : "Low Power",
         condition: ecuFinalData5 ? "Good" : "Bad",
       },
     ];
 
     return (
-      <div className="h-full w-full overflow-auto border-1 border-gray-300  rounded-lg ">
+      <div className="h-auto w-full overflow-auto border-1 border-gray-300  rounded-lg ">
         <table className="w-full divide-y divide-gray-200">
           <thead className="bg-[#e6deff]">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-medium text-[#460073] uppercase">
+              <th className="px-4 py-4 w-[10%]  text-left text-md font-medium text-[#460073] uppercase">
                 ID
               </th>
-              <th className="px-6 py-2 text-left text-sm font-medium text-[#460073] uppercase">
+              <th className="px-4 py-4 w-[20%]  text-left text-md font-medium text-[#460073] uppercase">
                 Name
               </th>
-              <th className="px-6 py-2 text-left text-sm font-medium text-[#460073] uppercase">
+              <th className="px-4 py-4 w-[30%]  text-left text-md font-medium text-[#460073] uppercase">
                 Error Code
               </th>
-              <th className="px-6 py-2 text-left text-sm font-medium text-[#460073] uppercase tracking-wider">
+              <th className="px-4 py-4 w-[30%]  text-left text-md font-medium text-[#460073] uppercase tracking-wider">
                 Fault
               </th>
-              <th className="px-6 py-2 text-left text-sm font-medium text-[#460073] uppercase tracking-wider">
+              <th className="px-4 py-4 w-[10%]  text-left text-md font-medium text-[#460073] uppercase tracking-wider">
                 Condition
               </th>
             </tr>
@@ -187,20 +187,20 @@ function EcuData() {
           <tbody className="bg-white divide-y divide-gray-200">
             {data.map((row) => (
               <tr key={row.id} className="hover:bg-[#e6deff]">
-                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-900 text-left">
+                <td className="px-4 py-4 whitespace-nowrap text-md text-gray-900 text-left">
                   {row.id}
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-900 text-left">
+                <td className="px-4 py-4 whitespace-nowrap text-md text-gray-900 text-left">
                   {row.name}
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-900 text-left">
-                  {row.moduleNumber}
+                <td className={`px-4 py-4 whitespace-nowrap text-md text-gray-900 text-center`}>
+                  {( row.moduleNumber)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                <td className="px-4 py-4 whitespace-nowrap text-md text-gray-900 text-left">
                   {row.fault}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm font-semibold text-left ${row.condition=="Bad" ? `text-red-500` : `text-green-500` }`}
+                  className={`px-4 py-4 whitespace-nowrap text-md font-semibold text-center ${row.condition=="Bad" ? `text-red-500` : `text-green-500` }`}
                 >
                   {(row.condition)}
                 </td>
@@ -267,30 +267,30 @@ function EcuData() {
           <DynamicTable/>
         </div>
         <div className="w-[30%] flex flex-col justify-between items-center px-4">
-          <div className="flex flex-row w-full justify-evenly">
-            <div className="flex flex-col w-auto justify-center items-center">
-              <img src={ecuFinalData1 ? ecu3 : ecu33} className="w-10 h-10" />
+          <div className="flex flex-row w-full h-[30%] justify-evenly">
+            <div className="flex flex-col w-full h-full justify-center items-center">
+              <img src={ecuFinalData1 ? ecu3 : ecu33} className="h-3/4" />
               <h1 className="text-sm" >Coolant</h1>
             </div>
-            <div className="flex flex-col w-auto justify-center items-center">
-              <img src={ecuFinalData2 ? ecu2 : ecu22} className="w-10 h-10" />
+            <div className="flex flex-col w-full h-full justify-center items-center">
+              <img src={ecuFinalData2 ? ecu2 : ecu22} className="h-3/4" />
               <h1 className="text-sm" >Engine Load</h1>
             </div>
           </div>
   
-          <div className="flex flex-row w-full justify-evenly">
-            <div className="flex flex-col  w-auto justify-center items-center ">
-              <img src={ecuFinalData3 ? ecu1 : ecu11} className="w-10 h-10" />
+          <div className="flex flex-row h-[30%] w-full justify-evenly">
+            <div className="flex flex-col  w-full h-full justify-center items-center ">
+              <img src={ecuFinalData3 ? ecu1 : ecu11} className="h-3/4" />
               <h1 className="text-sm" >Brake</h1>
             </div>
-            <div className="flex flex-col w-auto justify-center items-center">
-              <img src={ecuFinalData4 ? ecu4 : ecu44} className="w-10 h-10" />
+            <div className="flex flex-col  w-full h-full justify-center items-center">
+              <img src={ecuFinalData5 ? ecu4 : ecu44} className="h-3/4" />
               <h1 className="text-sm" >RPM</h1>
             </div>
           </div>
-          <div className="flex flex-row w-full justify-center">
-            <div className="flex flex-col w-auto justify-center items-center">
-              <img src={ecuFinalData5 ? ecu5 : ecu55} className="w-10 h-10" />
+          <div className="flex flex-row h-[30%] w-full justify-center">
+            <div className="flex flex-col  w-full h-full justify-center items-center">
+              <img src={ecuFinalData4 ? ecu5 : ecu55} className="h-3/4" />
               <h1 className="text-sm" >Battery</h1>
             </div>
           </div>
