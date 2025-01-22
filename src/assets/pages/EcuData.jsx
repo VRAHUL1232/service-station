@@ -202,7 +202,7 @@ function EcuData() {
                 <td
                   className={`px-6 py-4 whitespace-nowrap text-sm font-semibold text-left ${row.condition}`}
                 >
-                  {row.condition}
+                  {(row.condition)}
                 </td>
               </tr>
             ))}

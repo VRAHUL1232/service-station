@@ -25,7 +25,10 @@ function App() {
   const dispatch = useDispatch();
 
   const [key, setKey] = useState(0);
-  
+  const image1Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame.jpg?alt=media&token=2417ac6b-8124-4d91-9ca8-7390c7bcd875";
+  const image2Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg?alt=media&token=9c90f075-f91e-4d1d-b1f5-8fee5538046b"
+  const image3Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg?alt=media&token=45388a69-756a-43c0-a1c6-4db21e305743"
+  const diskImage = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_%7Bcamera_id%7D.jpg?alt=media&token=2d151d42-6a0c-4a34-99f3-0321d48c8b0c"
     const { firebaseConfig } = useSelector((state) => state.isOpen);
     useEffect(() => {
       const app = initializeApp(firebaseConfig);
@@ -220,16 +223,13 @@ function App() {
                   {dentImageId == 4 && `Right Bottom View`}
                 </h3>
                 {dentImageId == 1 && (
-                  <img src={card1} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={image1Url} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 {dentImageId == 2 && (
-                  <img src={card4} className="w-3/5 h-3/5 rounded-lg " />
+                  <img src={image2Url} className="w-3/5 h-3/5 rounded-lg " />
                 )}
                 {dentImageId == 3 && (
-                  <img src={card3} className="w-3/5 h-3/5 rounded-lg" />
-                )}
-                {dentImageId == 4 && (
-                  <img src={card2} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={image3Url} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 <button
                   onClick={() => dispatch(toggleOpenImage())}
@@ -250,7 +250,7 @@ function App() {
                 <h3 className="text-3xl justify-center font-bold mb-2">
                   Visual Inspection Images
                 </h3>
-                <img src={visual1} className="w-2/5 h-3/5 rounded-lg " />
+                <img src={diskImage} className="w-2/5 h-3/5 rounded-lg " />
 
                 <button
                   onClick={() => dispatch(toggleOpenVisual())}
