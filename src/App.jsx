@@ -1,8 +1,7 @@
 import "./index.css";
-import card1 from "/right.jpg";
+import card1 from "/left.jpg";
 import card2 from "/lefttop.jpg";
-import card3 from "/rightbottom.jpg";
-import card4 from "/left.jpg";
+import card3 from "/right.jpg";
 import visual1 from "/disk.jpg";
 import KeyFobs from "./assets/pages/KeyFobs";
 import ScratchCard from "./assets/pages/ScratchCard";
@@ -223,13 +222,13 @@ function App() {
                   {dentImageId == 4 && `Right Bottom View`}
                 </h3>
                 {dentImageId == 1 && (
-                  <img src={image1Url} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={card1} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 {dentImageId == 2 && (
-                  <img src={image2Url} className="w-3/5 h-3/5 rounded-lg " />
+                  <img src={card2} className="w-3/5 h-3/5 rounded-lg " />
                 )}
                 {dentImageId == 3 && (
-                  <img src={image3Url} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={card3} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 <button
                   onClick={() => dispatch(toggleOpenImage())}
@@ -250,7 +249,7 @@ function App() {
                 <h3 className="text-3xl justify-center font-bold mb-2">
                   Visual Inspection Images
                 </h3>
-                <img src={diskImage} className="w-2/5 h-3/5 rounded-lg " />
+                <img src={visual1} className="w-2/5 h-3/5 rounded-lg " />
 
                 <button
                   onClick={() => dispatch(toggleOpenVisual())}

@@ -200,7 +200,7 @@ function EcuData() {
                   {row.fault}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm font-semibold text-left ${row.condition}`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm font-semibold text-left ${row.condition=="Bad" ? `text-red-500` : `text-green-500` }`}
                 >
                   {(row.condition)}
                 </td>
