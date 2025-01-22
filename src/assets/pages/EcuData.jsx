@@ -266,27 +266,32 @@ function EcuData() {
         <div className="flex-1 overflow-auto shadow-lg border  border-zinc-400 rounded-lg"> 
           <DynamicTable/>
         </div>
-        <div className="w-[30%] flex flex-col justify-evenly items-center p-4">
+        <div className="w-[30%] flex flex-col justify-between items-center px-4">
           <div className="flex flex-row w-full justify-evenly">
-            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col w-auto justify-center items-center">
               <img src={ecuFinalData1 ? ecu3 : ecu33} className="w-10 h-10" />
+              <h1 className="text-sm" >Coolant</h1>
             </div>
-            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col w-auto justify-center items-center">
               <img src={ecuFinalData2 ? ecu2 : ecu22} className="w-10 h-10" />
+              <h1 className="text-sm" >Engine Load</h1>
             </div>
           </div>
   
           <div className="flex flex-row w-full justify-evenly">
-            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col  w-auto justify-center items-center ">
               <img src={ecuFinalData3 ? ecu1 : ecu11} className="w-10 h-10" />
+              <h1 className="text-sm" >Brake</h1>
             </div>
-            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col w-auto justify-center items-center">
               <img src={ecuFinalData4 ? ecu4 : ecu44} className="w-10 h-10" />
+              <h1 className="text-sm" >RPM</h1>
             </div>
           </div>
           <div className="flex flex-row w-full justify-center">
-            <div className="flex flex-col p-2 w-auto bg-white shadow-sm justify-center items-center gap-2">
+            <div className="flex flex-col w-auto justify-center items-center">
               <img src={ecuFinalData5 ? ecu5 : ecu55} className="w-10 h-10" />
+              <h1 className="text-sm" >Battery</h1>
             </div>
           </div>
         </div>
