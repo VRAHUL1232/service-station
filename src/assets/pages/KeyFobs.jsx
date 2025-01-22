@@ -1,0 +1,242 @@
+import { CircleUser } from "lucide-react";
+import car from "/car.png";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleOpenTable } from "../../isOpenSlice";
+import { useEffect, useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getDatabase, onValue, ref } from "firebase/database";
+
+function KeyFobs() {
+  const dispatch = useDispatch();
+  const [key, setKey] = useState(0);
+
+  const { firebaseConfig } = useSelector((state) => state.isOpen);
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const setupRealtimeListeners = () => {
+      // Users listener
+      const keyRef = ref(database, "KeyFob");
+      const unsubscribeKeyFob = onValue(
+        keyRef,
+        (snapshot) => {
+          setKey(snapshot.val());
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      return () => {
+        unsubscribeKeyFob();
+      };
+    };
+    return setupRealtimeListeners();
+  }, []);
+
+  const dataSet = [
+    {},
+    {
+      name: "V RAHUL",
+      model: "BMW",
+      number: "TN 09 AD 7651",
+      serviceDate: "2025-08-21",
+      cno: "987349593794379",
+      eno: "573975793793",
+      services: 10,
+      year: 1997,
+      odometer: 10000,
+    },
+    {
+      name: "JITESH",
+      model: "AUDI",
+      number: "TN 05 CD 9682",
+      serviceDate: "2025-03-11",
+      cno: "530958038038",
+      eno: "830850938938",
+      services: 12,
+      year: 2001,
+      odometer: 9967,
+    },
+    {
+      name: "V KISHORE",
+      model: "VOLKSWAGEN",
+      number: "TN 22 AM 2032",
+      serviceDate: "2025-10-29",
+      cno: "987349593794379",
+      eno: "573975793793",
+      services: 16,
+      year: 1980,
+      odometer: 74567,
+    },
+    {
+      name: "DIWAKAR",
+      model: "BENZ",
+      number: "TN 03 NX 7321",
+      serviceDate: "2025-09-01",
+      cno: "098535893484",
+      eno: "340580480380",
+      services: 14,
+      year: 1987,
+      odometer: 23456,
+    },
+    {
+      name: "MADHAN",
+      model: "FERRARI",
+      number: "TN 19 MO 9989",
+      serviceDate: "2025-04-22",
+      cno: "8308340805003",
+      eno: "3850803580343",
+      services: 13,
+      year: 1999,
+      odometer: 34543,
+    },
+  ];
+
+  function getDateDifference(date1) {
+    const d1 = new Date(date1);
+    const d2 = Date.now();
+    const diffInMs = Math.abs(d2 - d1);
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    return diffInDays;
+  }
+
+  return (
+    <div className="h-full bg-[#f3eded] flex flex-col justify-between p-8">
+      {/* Header Section */}
+      <div className="relative flex items-center justify-between">
+        {/* Key Fobs Header */}
+        <h1 className="text-3xl w-full flex-1 text-black font-bold text-center ">
+          Vehicle Data
+        </h1>
+
+        {/* Next Service Alert */}
+        <div className="rounded-md bg-[#e6dcff] shadow-md text-black flex p-2">
+          <div className="flex flex-col gap-0">
+            <div className="flex flex-row gap-1 items-center">
+              <img src="./image.png" className="w-7 h-7" />
+              <h1 className="text-md font-semibold">
+                {getDateDifference(dataSet[key]["serviceDate"])} days left!
+              </h1>
+            </div>
+            <div className="flex flex-row gap-1">
+              <h1 className="text-md font-semibold">Next Service:</h1>
+              <h1 className="text-md">{dataSet[key]["serviceDate"]}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Section */}
+      <div className="flex h-1/2 flex-row justify-between items-center gap-2">
+        {/* Left-aligned Section: Engine Number, Car Number Plate, Chassis Number */}
+        <div className="flex flex-col gap-4 items-start w-full md:w-1/2">
+          {/* Car Number Plate */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-b from-green-300 to-green-200 text-black font-bold rounded-full">
+              N
+            </div>
+            <h1 className="text-xl font-semibold text-black">
+              <span className="font-bold">Number Plate:</span>{" "}
+              <span className="border-2 px-1 py-2 border-gray-500">
+                {dataSet[key]["number"]}
+              </span>
+            </h1>
+          </div>
+
+          {/* Chassis Number */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-purple-300 to-purple-200 text-black font-bold rounded-full">
+              C
+            </div>
+            <h1 className="text-xl font-semibold text-black">
+              <span className="font-bold">Chassis Number:</span>{" "}
+              {dataSet[key]["cno"]}
+            </h1>
+          </div>
+
+          {/* Engine Number */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-blue-300 to-blue-200 text-black font-bold rounded-full">
+              E
+            </div>
+            <h1 className="text-xl font-semibold text-black">
+              <span className="font-bold">Engine Number:</span>{" "}
+              {dataSet[key]["eno"]}
+            </h1>
+          </div>
+        </div>
+
+        {/* Right-aligned Section: Car Owner, Car Name, Service History Button */}
+        <div className="flex flex-col gap-4 items-end w-[40%]">
+          {/* Car Owner */}
+          <div className="flex items-center gap-3 w-full justify-end">
+            <CircleUser className="w-8 h-8 text-black border-2 border-black rounded-full" />
+            <h1 className="text-xl font-semibold text-black">
+              <span className="font-bold">Owner:</span> {dataSet[key]["name"]}
+            </h1>
+          </div>
+
+          {/* Car Name */}
+          <div className="flex items-center gap-3 w-full justify-end">
+            <img
+              src={car}
+              alt="Car"
+              className="w-8 h-8 bg-white border-2 border-black rounded-lg"
+            />
+            <h1 className="text-xl font-semibold text-black">
+              <span className="font-bold">Model:</span> {dataSet[key]["model"]}
+            </h1>
+          </div>
+
+          {/* Service History Button */}
+          <div
+            className="flex justify-center w-40 rounded-md px-4 py-2 bg-[#7500c0] text-white text-center cursor-pointer hover:bg-[#dcafff] hover:text-black transition shadow-md"
+            onClick={() => {
+              dispatch(toggleOpenTable());
+            }}
+          >
+            <h1 className="text-md font-semibold">Service History</h1>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Info Boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-gradient-to-b from-pink-200 via-white to-pink-50 shadow-lg rounded-lg p-2 text-center flex flex-col items-center">
+          <img
+            src="./machine.png"
+            alt="Manufacture Year"
+            className="w-12 h-12 mb-2"
+          />
+          <h1 className="text-lg font-bold text-gray-600">Manufacture Year</h1>
+          <h1 className="text-2xl font-bold text-black">
+            {dataSet[key]["year"]}
+          </h1>
+        </div>
+        <div className="bg-gradient-to-b from-blue-200 via-white to-blue-50 shadow-lg rounded-lg p-2 text-center flex flex-col items-center">
+          <img src="./odometer.png" alt="Total KM" className="w-16 h-12 mb-2" />
+          <h1 className="text-lg font-bold text-gray-600">Total KM</h1>
+          <h1 className="text-2xl font-bold text-black">
+            {dataSet[key]["odometer"]}
+          </h1>
+        </div>
+        <div className="bg-gradient-to-b from-green-200 via-white to-green-50 shadow-lg rounded-lg p-2 text-center flex flex-col items-center">
+          <img
+            src="./service.png"
+            alt="Total Services"
+            className="w-12 h-12 mb-2"
+          />
+          <h1 className="text-lg font-bold text-gray-600">Total Services</h1>
+          <h1 className="text-2xl font-bold text-black">
+            {dataSet[key]["services"]}
+          </h1>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default KeyFobs;
