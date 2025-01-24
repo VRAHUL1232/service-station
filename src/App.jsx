@@ -1,5 +1,6 @@
 import "./index.css";
 import card1 from "/left.jpg";
+import dummy from "/dummy.jpg"
 import card2 from "/lefttop.jpg";
 import card3 from "/right.jpg";
 import visual1 from "/disk.jpg";
@@ -24,10 +25,9 @@ function App() {
   const dispatch = useDispatch();
 
   const [key, setKey] = useState(0);
-  const image1Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame.jpg?alt=media&token=2417ac6b-8124-4d91-9ca8-7390c7bcd875";
-  const image2Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg?alt=media&token=9c90f075-f91e-4d1d-b1f5-8fee5538046b"
-  const image3Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg?alt=media&token=45388a69-756a-43c0-a1c6-4db21e305743"
-  const diskImage = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_%7Bcamera_id%7D.jpg?alt=media&token=2d151d42-6a0c-4a34-99f3-0321d48c8b0c"
+  const image1Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg?alt=media&token=ad62a06d-1e19-438c-a0a7-b5a6d4ce6530";
+  const image2Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg?alt=media&token=edf8f598-64d8-4ea3-b6c2-d07b11ef1e54"
+  const image3Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_2.jpg?alt=media&token=739a98ff-dca9-4a8f-851e-e2000da1ccf7"
     const { firebaseConfig } = useSelector((state) => state.isOpen);
     useEffect(() => {
       const app = initializeApp(firebaseConfig);
@@ -222,13 +222,13 @@ function App() {
                   {dentImageId == 3 && `Right View`}
                 </h3>
                 {dentImageId == 1 && (
-                  <img src={card1} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0) ? dummy :image1Url} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 {dentImageId == 2 && (
-                  <img src={card2} className="w-3/5 h-3/5 rounded-lg " />
+                  <img src={(key==0) ? dummy :image2Url} className="w-3/5 h-3/5 rounded-lg " />
                 )}
                 {dentImageId == 3 && (
-                  <img src={card3} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0) ? dummy :image3Url} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 <button
                   onClick={() => dispatch(toggleOpenImage())}
@@ -249,7 +249,7 @@ function App() {
                 <h3 className="text-3xl justify-center font-bold mb-2">
                   Visual Inspection Images
                 </h3>
-                <img src={visual1} className="w-2/5 h-3/5 rounded-lg " />
+                <img src={(key==0) ? dummy :visual1} className="w-2/5 h-3/5 rounded-lg " />
 
                 <button
                   onClick={() => dispatch(toggleOpenVisual())}
@@ -271,7 +271,7 @@ function App() {
                   <h1 className="text-3xl justify-center font-bold mb-2">
                     Service History
                   </h1>
-                  <ServiceTable />
+                  {key==0 ? <h1>No Result</h1> : <ServiceTable />}
                 </div>
                 <button
                   onClick={() => dispatch(toggleOpenTable())}

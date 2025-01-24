@@ -1,5 +1,6 @@
 import { CircleCheckBig, CircleX } from "lucide-react";
 import visual1 from "/disk.jpg";
+import dummy from "/dummy.jpg";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeApp } from "firebase/app";
@@ -21,12 +22,24 @@ const TableComponent = () => {
   const product = "Disk Brake";
   const [genuine, setGenuine] = useState("True");
   const [percent, setPercent] = useState(90);
+  const [key,setKey] = useState(0);
   const dispatch = useDispatch();
+
   const { firebaseConfig } = useSelector((state) => state.isOpen);
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
     const setupRealtimeListeners = () => {
+      const keyRef = ref(database, "KeyFob");
+      const unsubscribeKeyFob = onValue(
+        keyRef,
+        (snapshot) => {
+          setKey(snapshot.val());
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
       const genuineRef = ref(database, "visual-data/genuine");
       const unsubscribeGenuine = onValue(
         genuineRef,
@@ -52,6 +65,7 @@ const TableComponent = () => {
       return () => {
         unsubscribeGenuine();
         unsubscribePercentage();
+        unsubscribeKeyFob();
       };
     };
     setupRealtimeListeners();
@@ -61,12 +75,13 @@ const TableComponent = () => {
     <div className="flex flex-col h-full w-full justify-center items-center gap-6 min-h-0">
       <div className="flex flex-row justify-center">
         <h1 className="text-xl text-black font-bold">
-          <span className="text-black">{product}</span>
+          <span className="text-black">{key == 0 ? "No object Placed" :product}</span>
         </h1>
         <div className="w-8" />
         <div className="" />
         <h1 className="flex flex-row text-xl text-black font-bold">
-          {(genuine=="True") ? (
+          {key==0 ? "" : 
+          (genuine=="True") ? (
             <span className={`text-green-400`}>
               <CircleCheckBig />
             </span>
@@ -75,7 +90,7 @@ const TableComponent = () => {
               <CircleX />
             </span>
           )}
-          {(genuine=="True") ? (
+          {(key==0) ? "" :  (genuine=="True") ? (
             <span className={`text-green-400`}>Genuine</span>
           ) : (
             <span className={`text-red-700`}>Not Genuine</span>
@@ -84,12 +99,12 @@ const TableComponent = () => {
       </div>
       <img
         onClick={() => dispatch(toggleOpenVisual())}
-        src={visual1}
+        src={ (key==0) ? dummy : visual1}
         className="h-[50%] max-h-[40rem] object-scale-down rounded-lg cursor-pointer transition hover:opacity-60"
       />
       <div className="flex justify-center ">
         <h1 className="text-xl text-black font-bold">
-          Wear and Tear: <span className="text-blue-800">{percent.toFixed(2)}%</span>
+          Wear and Tear: <span className="text-blue-800">{key==0 ? "--" : percent.toFixed(2)+'%'}</span>
         </h1>
       </div>
     </div>

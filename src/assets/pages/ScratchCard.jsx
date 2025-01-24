@@ -18,10 +18,10 @@ function ScratchCard() {
   const [topDent, setTopDent] = useState(null);
   const { firebaseConfig } = useSelector((state) => state.isOpen);
 
+  const [key, setKey] = useState(0);
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-
     const setupRealtimeListeners = () => {
       // Users listener
       const leftScratchRef = ref(database, "scratch-dent/left-scratch");
@@ -29,6 +29,17 @@ function ScratchCard() {
         leftScratchRef,
         (snapshot) => {
           setLeftScratch(snapshot.val());
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+      const keyRef = ref(database, "KeyFob");
+      const unsubscribeKeyFob = onValue(
+        keyRef,
+        (snapshot) => {
+          setKey(snapshot.val());
         },
         (error) => {
           console.log(error);
@@ -92,6 +103,7 @@ function ScratchCard() {
 
       return () => {
         // Cleanup listeners
+        unsubscribeKeyFob();
         unsubscribeLeftScratch();
         unsubscribeTopDent();
         unsubscribeTopScratch();
@@ -113,7 +125,7 @@ function ScratchCard() {
           }}
           className="p-2 bg-gray-600 rounded-full transition text-white hover:text-white shadow-md shadow-zinc-700 hover:bg-gray-400"
         >
-          <FaRegImage size={25} />
+           <FaRegImage size={25} />
         </button>
       </div>
     );
@@ -131,9 +143,9 @@ function ScratchCard() {
             <div className="flex flex-col items-center justify-center w-auto">
               <div className="flex flex-col">
                 <h4>
-                  <span className="text-[#a100ff] font-bold">{leftDent}D</span>{" "}
+                  <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :leftDent}D</span>{" "}
                   <span className="text-[#0041f0] font-bold">
-                    {leftScratch}S
+                    {(key==0) ? 0 :leftScratch}S
                   </span>
                 </h4>
               </div>
@@ -150,8 +162,8 @@ function ScratchCard() {
           <div className="flex flex-row justify-center w-full h-auto">
             <div className="flex flex-row justify-between">
               <h4>
-                <span className="text-[#a100ff] font-bold">{topDent}D</span>{" "}
-                <span className="text-[#0041f0] font-bold">{topScratch}S</span>
+                <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :  topDent}D</span>{" "}
+                <span className="text-[#0041f0] font-bold">{(key==0) ? 0 :topScratch}S</span>
               </h4>
             </div>
           </div>
@@ -171,7 +183,7 @@ function ScratchCard() {
             <ArrowLine />
             <div className="flex flex-col justify-center">
               <h4>
-                <span className="text-[#a100ff] font-bold">{rightDent}D</span>{" "}
+                <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :rightDent}D</span>{" "}
                 <span className="text-[#0041f0] font-bold">
                   {rightScratch}S
                 </span>
@@ -185,13 +197,13 @@ function ScratchCard() {
           <h4 className="text-black text-xl font-bold">Total:-</h4>
           <h4 className="text-[#a100ff] text-xl">
             <span className="text-[#460073]">
-              {leftDent + rightDent + topDent}
+              {(key==0) ? 0 :leftDent + rightDent + topDent}
             </span>{" "}
             Dent
           </h4>
           <h4 className="text-[#0041f0] text-xl">
             <span className="text-[#460073]">
-              {leftScratch + rightScratch + topScratch}
+              {(key==0) ? 0 :leftScratch + rightScratch + topScratch}
             </span>{" "}
             Scratch
           </h4>
