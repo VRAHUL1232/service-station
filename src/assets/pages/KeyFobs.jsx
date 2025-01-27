@@ -71,7 +71,7 @@ function KeyFobs() {
     },
     {
       name: "V KISHORE",
-      model: "VOLKSWAGEN",
+      model: "TATA",
       number: "TN 22 AM 2032",
       serviceDate: "2025-10-29",
       cno: "987349593794379",

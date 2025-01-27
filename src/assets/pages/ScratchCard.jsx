@@ -162,8 +162,8 @@ function ScratchCard() {
           <div className="flex flex-row justify-center w-full h-auto">
             <div className="flex flex-row justify-between">
               <h4>
-                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :  topDent}D</span>{" "}
-                <span className="text-[#0041f0] font-bold">{(key==0 || key==1) ? 0 :topScratch}S</span>
+                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :  rightScratch}D</span>{" "}
+                <span className="text-[#0041f0] font-bold">{(key==0 || key==1) ? 0 :rightDent}S</span>
               </h4>
             </div>
           </div>
@@ -183,9 +183,9 @@ function ScratchCard() {
             <ArrowLine />
             <div className="flex flex-col justify-center">
               <h4>
-                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :rightDent}D</span>{" "}
+                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :topScratch}D</span>{" "}
                 <span className="text-[#0041f0] font-bold">
-                  {rightScratch}S
+                  {topDent}S
                 </span>
               </h4>
             </div>

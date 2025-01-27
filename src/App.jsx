@@ -287,13 +287,13 @@ function App() {
                   {dentImageId == 3 && `Right View`}
                 </h3>
                 {dentImageId == 1 && (
-                  <img src={(key==0) ? dummy :leftUrl} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0 || key==1) ? dummy :leftUrl} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 {dentImageId == 2 && (
-                  <img src={(key==0) ? dummy :topUrl} className="w-3/5 h-3/5 rounded-lg " />
+                  <img src={(key==0 || key==1) ? dummy :topUrl} className="w-3/5 h-3/5 rounded-lg " />
                 )}
                 {dentImageId == 3 && (
-                  <img src={(key==0) ? dummy :rightUrl} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0 || key==1) ? dummy :rightUrl} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 <button
                   onClick={() => dispatch(toggleOpenImage())}
@@ -314,7 +314,7 @@ function App() {
                 <h3 className="text-3xl justify-center font-bold mb-2">
                   Visual Inspection Images
                 </h3>
-                <img src={(key==0) ? dummy :diskUrl} className="w-2/5 h-3/5 rounded-lg " />
+                <img src={(key==0 || key==1) ? dummy :diskUrl} className="w-2/5 h-3/5 rounded-lg " />
 
                 <button
                   onClick={() => dispatch(toggleOpenVisual())}
@@ -407,7 +407,7 @@ const dataSet = [
   },
   {
     name: "V KISHORE",
-    model: "VOLKSWAGEN",
+    model: "TATA",
     number: "TN 22 AM 2032",
     serviceDate: "2025-10-29",
     cno: "987349593794379",
