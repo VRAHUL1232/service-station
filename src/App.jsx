@@ -1,9 +1,5 @@
 import "./index.css";
-import card1 from "/left.jpg";
 import dummy from "/dummy.jpg"
-import card2 from "/lefttop.jpg";
-import card3 from "/right.jpg";
-import visual1 from "/disk.jpg";
 import KeyFobs from "./assets/pages/KeyFobs";
 import ScratchCard from "./assets/pages/ScratchCard";
 import Inspection from "./assets/pages/Inspection";
@@ -25,32 +21,101 @@ function App() {
   const dispatch = useDispatch();
 
   const [key, setKey] = useState(0);
-  const image1Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg?alt=media&token=ad62a06d-1e19-438c-a0a7-b5a6d4ce6530";
-  const image2Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg?alt=media&token=edf8f598-64d8-4ea3-b6c2-d07b11ef1e54"
-  const image3Url = "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_2.jpg?alt=media&token=739a98ff-dca9-4a8f-851e-e2000da1ccf7"
+  const [leftToken,setLeftToken] = useState("")
+  const [rightToken,setRightToken] = useState("")
+  const [topToken,setTopToken] = useState("")
+  const [diskToken,setDiskToken] = useState("")
+  const leftUrl = `https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg?alt=media&token=${leftToken}`;
+  const topUrl = `https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_2.jpg?alt=media&token=${topToken}`;
+  const rightUrl = `https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg?alt=media&token=${rightToken}`;
+  const diskUrl = `https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/inspection-images%2Fprocessed_annotated_frame1.jpg?alt=media&token=${diskToken}`
     const { firebaseConfig } = useSelector((state) => state.isOpen);
+
+    const fetchData = async () => {
+      try {
+        const leftResponse = await fetch(
+          "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_0.jpg"
+        );
+        if (!leftResponse.ok) {
+          throw new Error("Network was not ok");
+        }
+        const resultLeft = await leftResponse.json();
+    
+        const topResponse = await fetch(
+          "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_2.jpg"
+        );
+        if (!topResponse.ok) {
+          throw new Error("Network was not ok");
+        }
+        const resultTop = await topResponse.json();
+    
+        const rightResponse = await fetch(
+          "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/car-images%2Fprocessed_annotated_frame_1.jpg"
+        );
+        if (!rightResponse.ok) {
+          throw new Error("Network was not ok");
+        }
+        const resultRight = await rightResponse.json();
+    
+        const visualResponse = await fetch(
+          "https://firebasestorage.googleapis.com/v0/b/chat-app-ae7f9.appspot.com/o/inspection-images%2Fprocessed_annotated_frame1.jpg"
+        );
+        if (!visualResponse.ok) {
+          throw new Error("Network was not ok");
+        }
+        const resultVisual = await visualResponse.json();
+    
+        setLeftToken(resultLeft.downloadTokens);
+        setTopToken(resultTop.downloadTokens);
+        setRightToken(resultRight.downloadTokens);
+        setDiskToken(resultVisual.downloadTokens);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      } finally {
+        console.log("Fetch operation complete.");
+      }
+    };
+    
+    useEffect(()=>{
+      console.log(leftToken);
+    },[leftToken])
+    
+
     useEffect(() => {
       const app = initializeApp(firebaseConfig);
       const database = getDatabase(app);
-  
+
       const setupRealtimeListeners = () => {
         // Users listener
         const keyRef = ref(database, "KeyFob");
         const unsubscribeKeyFob = onValue(
           keyRef,
           (snapshot) => {
-            setKey(snapshot.val());
+            setKey(() => {
+              return snapshot.val()
+            });
           },
           (error) => {
             console.log(error);
           }
         );
-  
+       
         return () => {
           unsubscribeKeyFob();
         };
+
       };
-      return setupRealtimeListeners();
+
+      const interval = setInterval(() => {
+        fetchData();
+      }, 5000)
+
+      setupRealtimeListeners();
+
+      return () => {
+        clearInterval(interval); 
+        setupRealtimeListeners();
+      };
     }, []);
 
   const invoices = [
@@ -222,13 +287,13 @@ function App() {
                   {dentImageId == 3 && `Right View`}
                 </h3>
                 {dentImageId == 1 && (
-                  <img src={(key==0) ? dummy :image1Url} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0) ? dummy :leftUrl} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 {dentImageId == 2 && (
-                  <img src={(key==0) ? dummy :image2Url} className="w-3/5 h-3/5 rounded-lg " />
+                  <img src={(key==0) ? dummy :topUrl} className="w-3/5 h-3/5 rounded-lg " />
                 )}
                 {dentImageId == 3 && (
-                  <img src={(key==0) ? dummy :image3Url} className="w-3/5 h-3/5 rounded-lg" />
+                  <img src={(key==0) ? dummy :rightUrl} className="w-3/5 h-3/5 rounded-lg" />
                 )}
                 <button
                   onClick={() => dispatch(toggleOpenImage())}
@@ -249,7 +314,7 @@ function App() {
                 <h3 className="text-3xl justify-center font-bold mb-2">
                   Visual Inspection Images
                 </h3>
-                <img src={(key==0) ? dummy :visual1} className="w-2/5 h-3/5 rounded-lg " />
+                <img src={(key==0) ? dummy :diskUrl} className="w-2/5 h-3/5 rounded-lg " />
 
                 <button
                   onClick={() => dispatch(toggleOpenVisual())}
