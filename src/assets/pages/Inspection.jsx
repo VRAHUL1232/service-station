@@ -75,12 +75,12 @@ const TableComponent = () => {
     <div className="flex flex-col h-full w-full justify-center items-center gap-6 min-h-0">
       <div className="flex flex-row justify-center">
         <h1 className="text-xl text-black font-bold">
-          <span className="text-black">{key == 0 ? "No object Placed" :product}</span>
+          <span className="text-black">{(key == 0 || key==1) ? "No object Placed" :product}</span>
         </h1>
         <div className="w-8" />
         <div className="" />
         <h1 className="flex flex-row text-xl text-black font-bold">
-          {key==0 ? "" : 
+          {(key==0 || key==1) ? "" : 
           (genuine=="True") ? (
             <span className={`text-green-400`}>
               <CircleCheckBig />
@@ -90,7 +90,7 @@ const TableComponent = () => {
               <CircleX />
             </span>
           )}
-          {(key==0) ? "" :  (genuine=="True") ? (
+          {(key==0 || key==1) ? "" :  (genuine=="True") ? (
             <span className={`text-green-400`}>Genuine</span>
           ) : (
             <span className={`text-red-700`}>Not Genuine</span>
@@ -104,7 +104,7 @@ const TableComponent = () => {
       />
       <div className="flex justify-center ">
         <h1 className="text-xl text-black font-bold">
-          Wear and Tear: <span className="text-blue-800">{key==0 ? "--" : percent.toFixed(2)+'%'}</span>
+          Rate of Wear: <span className="text-blue-800">{(key==0 || key==1) ? "--" : percent.toFixed(2)+'%'}</span>
         </h1>
       </div>
     </div>

@@ -143,9 +143,9 @@ function ScratchCard() {
             <div className="flex flex-col items-center justify-center w-auto">
               <div className="flex flex-col">
                 <h4>
-                  <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :leftDent}D</span>{" "}
+                  <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :leftDent}D</span>{" "}
                   <span className="text-[#0041f0] font-bold">
-                    {(key==0) ? 0 :leftScratch}S
+                    {(key==0 || key==1) ? 0 :leftScratch}S
                   </span>
                 </h4>
               </div>
@@ -162,8 +162,8 @@ function ScratchCard() {
           <div className="flex flex-row justify-center w-full h-auto">
             <div className="flex flex-row justify-between">
               <h4>
-                <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :  topDent}D</span>{" "}
-                <span className="text-[#0041f0] font-bold">{(key==0) ? 0 :topScratch}S</span>
+                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :  topDent}D</span>{" "}
+                <span className="text-[#0041f0] font-bold">{(key==0 || key==1) ? 0 :topScratch}S</span>
               </h4>
             </div>
           </div>
@@ -183,7 +183,7 @@ function ScratchCard() {
             <ArrowLine />
             <div className="flex flex-col justify-center">
               <h4>
-                <span className="text-[#a100ff] font-bold">{(key==0) ? 0 :rightDent}D</span>{" "}
+                <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :rightDent}D</span>{" "}
                 <span className="text-[#0041f0] font-bold">
                   {rightScratch}S
                 </span>
@@ -197,13 +197,13 @@ function ScratchCard() {
           <h4 className="text-black text-xl font-bold">Total:-</h4>
           <h4 className="text-[#a100ff] text-xl">
             <span className="text-[#460073]">
-              {(key==0) ? 0 :leftDent + rightDent + topDent}
+              {(key==0 || key==1) ? 0 :leftDent + rightDent + topDent}
             </span>{" "}
             Dent
           </h4>
           <h4 className="text-[#0041f0] text-xl">
             <span className="text-[#460073]">
-              {(key==0) ? 0 :leftScratch + rightScratch + topScratch}
+              {(key==0 || key==1) ? 0 :leftScratch + rightScratch + topScratch}
             </span>{" "}
             Scratch
           </h4>
