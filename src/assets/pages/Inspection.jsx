@@ -23,6 +23,7 @@ const TableComponent = () => {
   const [genuine, setGenuine] = useState("True");
   const [percent, setPercent] = useState(90);
   const [key,setKey] = useState(0);
+  const [isImage,setIsImage] = useState(0)
   const dispatch = useDispatch();
 
   const { firebaseConfig } = useSelector((state) => state.isOpen);
@@ -62,10 +63,22 @@ const TableComponent = () => {
         }
       );
 
+      const isImageRef = ref(database, "SensorData/image");
+      const unsubscribeIsImage = onValue(
+        isImageRef,
+        (snapshot) => {
+          setIsImage(snapshot.val());
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
       return () => {
         unsubscribeGenuine();
         unsubscribePercentage();
         unsubscribeKeyFob();
+        unsubscribeIsImage();
       };
     };
     setupRealtimeListeners();
@@ -104,7 +117,7 @@ const TableComponent = () => {
       />
       <div className="flex justify-center ">
         <h1 className="text-xl text-black font-bold">
-          Rate of Wear: <span className="text-blue-800">{(key==0 || key==1) ? "--" : percent.toFixed(2)+'%'}</span>
+          Rate of Wear: <span className="text-blue-800">{(key==0 || key==1 || isImage==0) ? "--" : percent.toFixed(2)+'%'}</span>
         </h1>
       </div>
     </div>

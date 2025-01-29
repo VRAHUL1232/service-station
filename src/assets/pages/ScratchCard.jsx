@@ -185,7 +185,7 @@ function ScratchCard() {
               <h4>
                 <span className="text-[#a100ff] font-bold">{(key==0 || key==1) ? 0 :topDent}D</span>{" "}
                 <span className="text-[#0041f0] font-bold">
-                  {topScratch}S
+                  {(key==0 || key==1) ? 0 :topScratch}S
                 </span>
               </h4>
             </div>

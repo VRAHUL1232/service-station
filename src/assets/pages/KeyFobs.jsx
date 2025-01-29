@@ -70,7 +70,7 @@ function KeyFobs() {
       odometer: 9967,
     },
     {
-      name: "V KISHORE",
+      name: "KISHORE",
       model: "TATA",
       number: "TN 22 AM 2032",
       serviceDate: "2025-10-29",
