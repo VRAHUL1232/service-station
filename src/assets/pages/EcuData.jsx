@@ -129,7 +129,7 @@ function EcuData() {
         id: 1,
         name: "Coolant",
         moduleNumber: ecuFinalData1 ? "--" : "CRC-001",
-        fault: ecuFinalData1 ? "No Fault" : "Abnormal Temperature",
+        fault: ecuFinalData1 ? "No Fault" : "Abnormal",
         condition: ecuFinalData1 ? "Good" : "Bad",
       },
       {
