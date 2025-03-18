@@ -77,7 +77,6 @@ function App() {
     };
     
     useEffect(()=>{
-      console.log(leftToken);
     },[leftToken])
     
 
